@@ -86,15 +86,13 @@ func main() {
 	wg.Add(1)
 	go GetJobList(job, client, &wg)
 
-	// wg.Add(10)
-	// for i := 0; i < 10; i++ {
-	// 	wg.Add(1)
-	// 	go GetJobList(job, &wg)
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+		go GetJobList(job, &wg)
 
-	// }
+	}
 
-	// wg.Wait()
-	// close(job)
 
 	// 使用for循环channel的情况下，如果设置如上，会block
 	// https://www.reddit.com/r/golang/comments/bpq6up/beginner_help_why_does_this_hang/
